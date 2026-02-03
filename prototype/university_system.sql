@@ -5,8 +5,8 @@ USE university_system;
 -- Table for user roles
 CREATE TABLE IF NOT EXISTS roles (
     role_id INT PRIMARY KEY AUTO_INCREMENT,
-    role_name VARCHAR(50) NOT NULL UNIQUE,
-    role_code VARCHAR(20) NOT NULL UNIQUE,
+    role_name VARCHAR(50) NOT NULL,
+    role_code VARCHAR(20) NOT NULL ,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS login_attempts (
     INDEX idx_email_time (email, attempt_time)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---Part B tables only
+-- Part B tables only
 CREATE TABLE IF NOT EXISTS courses (
     course_id INT PRIMARY KEY AUTO_INCREMENT,
     course_code VARCHAR(20) NOT NULL UNIQUE,
@@ -120,16 +120,3 @@ CREATE TABLE IF NOT EXISTS grades (
     INDEX idx_student (student_id),
     INDEX idx_course (course_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Optional: Add sample data for testing
-INSERT INTO courses (course_code, course_name, description, professor_id, semester) VALUES
-('CS101', 'Introduction to Programming', 'Learn the fundamentals of programming using Python', 2, 'Fall 2025'),
-('CS201', 'Web Development', 'Master HTML, CSS, JavaScript and PHP for web applications', 2, 'Fall 2025'),
-('CS301', 'Database Systems', 'Comprehensive study of relational databases and SQL', 2, 'Fall 2025');
-
-INSERT INTO assignments (course_id, title, description, due_date, max_points, created_by) VALUES
-(1, 'Python Basics Assignment', 'Complete exercises 1-10 from the textbook', '2025-12-20 23:59:59', 100, 2),
-(1, 'Data Structures Project', 'Implement a binary search tree in Python', '2025-12-25 23:59:59', 100, 2),
-(2, 'HTML & CSS Portfolio', 'Create a personal portfolio website', '2025-12-22 23:59:59', 100, 2),
-(2, 'JavaScript Calculator', 'Build a functional calculator using JavaScript', '2025-12-28 23:59:59', 100, 2),
-(3, 'Database Design Project', 'Design a complete database schema for an e-commerce system', '2025-12-30 23:59:59', 100, 2);
